@@ -1,14 +1,14 @@
 const apiAuthorize = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '9622861093msh398bf11fe4ca399p11812ejsnfff9a3a80a82',
+		'X-RapidAPI-Key': '4344a6e8a8mshee7e2dccc3f3721p154794jsn7d775e829ab1',
 		'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
 	}
 }
 const apiAuthorizeYoutube = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '9622861093msh398bf11fe4ca399p11812ejsnfff9a3a80a82',
+		'X-RapidAPI-Key': '4344a6e8a8mshee7e2dccc3f3721p154794jsn7d775e829ab1',
 		'X-RapidAPI-Host': 'youtube-search-and-download.p.rapidapi.com'
 	}
 };

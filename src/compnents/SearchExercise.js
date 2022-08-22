@@ -63,8 +63,9 @@ export default function SearchExercise(){
                 exercise.equipment.toLowerCase().includes(searchExcer) || 
                 exercise.bodyPart.toLowerCase().includes(searchExcer)
             )
-            setSearchExcer('')
             window.scrollTo({top:940, behavior: 'smooth' });
+            setSearchExcer('')
+            console.log('searched')
         }
         }
     function holdBodyPart(part){
@@ -73,17 +74,17 @@ export default function SearchExercise(){
 
     }
     function showExercises(){
-        if (currentPart === 'All' && !searchedData.current.length){
+        if(searchedData.current.length){
+            const exercise = searchedData.current.map(exercise => <Exercise data={exercise} key={exercise.id} />)
+            searchedData.current = ''
+            return exercise
+        }
+        else if (currentPart === 'All' && !searchedData.current.length){
             const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             return exercise
         }
         else if (currentPart !== 'All' && exercisesBody.length && !searchedData.current.length){
             const exercise = exercisesBody.map(exercise => <Exercise data={exercise} key={exercise.id} />)
-            return exercise
-        }
-        else if(searchedData.current.length){
-            const exercise = searchedData.current.map(exercise => <Exercise data={exercise} key={exercise.id} />)
-            searchedData.current = ''
             return exercise
         }
     }
@@ -135,7 +136,6 @@ export default function SearchExercise(){
                                         count={Math.ceil(showExercises().length / exercisesPerPage)}
                                         page={currentPage}
                                         onChange={paginate}
-                                        size="large"
                                     />}
                 </div>
             </div>

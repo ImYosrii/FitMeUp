@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@476&display=swap');
 *{
     margin:0;
     padding: 0;
@@ -5,7 +6,6 @@
     scroll-behavior: smooth;
     font-family: sans-serif;
 }
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@476&display=swap');
 body{
     min-height:250vh;
     background: #FFFAFB;
@@ -71,6 +71,8 @@ p{
 }
 .exercises-btn:hover, 
 .exercises-btn:focus,
+.search-btn:active,
+.search-btn:hover,
 .search-btn:active{
     background: rgb(173, 3, 3);
 }
@@ -96,6 +98,7 @@ p{
     color:white;
     border-bottom-right-radius: .53em;
     border-top-right-radius: .53em;
+    cursor: pointer;
 }
 .bodyParts-container{
     display: grid;
