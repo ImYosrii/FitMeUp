@@ -55,7 +55,7 @@ export default function SearchExercise(){
     }
     function handleSubmit(event){
         event.preventDefault()
-        if(searchExcer.length > 0 ){
+        if(searchExcer.length){
             searchedData.current = Alldata.filter(
                 exercise => 
                 exercise.name.toLowerCase().includes(searchExcer) || 
@@ -65,7 +65,6 @@ export default function SearchExercise(){
             )
             window.scrollTo({top:940, behavior: 'smooth' });
             setSearchExcer('')
-            console.log('searched')
         }
         }
     function holdBodyPart(part){
@@ -77,6 +76,7 @@ export default function SearchExercise(){
         if(searchedData.current.length){
             const exercise = searchedData.current.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             searchedData.current = ''
+
             return exercise
         }
         else if (currentPart === 'All' && !searchedData.current.length){
@@ -90,22 +90,19 @@ export default function SearchExercise(){
     }
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-    const currentExercises = Alldata.length && showExercises().slice(indexOfFirstExercise, indexOfLastExercise);
-
+    const currentExercises = Alldata.length && showExercises().slice(indexOfFirstExercise, indexOfLastExercise)
+    
 
     function paginate(event, value){
         setCurrentPage(value)
   }
-        const bodyParts = bodyPartsData.length > 0 ? bodyPartsData.map(bodyPart =>
+        const bodyParts = bodyPartsData.length? bodyPartsData.map(bodyPart =>
              <BodyParts 
                 part={bodyPart} 
                 key={bodyPart} 
                 id={bodyPart} 
                 func={holdBodyPart}
                 currentPart={currentPart}/>) : ''
-
-    //toDo makse selected part  overwrites the search
-
     return(
         <div>
             <form 
@@ -140,5 +137,6 @@ export default function SearchExercise(){
                 </div>
             </div>
         </div>
+
     )
 }

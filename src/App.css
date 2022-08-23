@@ -108,6 +108,7 @@ p{
     gap:5em;
     margin-top:8em;
     border-radius: .53em;
+    padding: 4em;
 }
 .bodyPart-container{
     border: 1px solid black;
@@ -162,7 +163,7 @@ p{
 }
 .exercises-container{
     margin:1em 0;
-    margin-right:.2em
+    padding: 2em;
 }
 .details-icons{
     display: inline-block;
@@ -394,10 +395,12 @@ p{
     .bodyParts-container{
         font-size: .6rem;
         margin-bottom: 8em;
+        padding: 0;
     }
     .exercises-container{
         margin-top:3em;
         margin-left:2.5em;
+        padding-top: 0;
     }
     .exercise-detail-container{
         width:17em;
@@ -510,6 +513,9 @@ p{
         font-size: .6rem;
         margin-bottom: 8em;
         grid-template: 7em 7em 7em 7em / 25em 25em 25em;
+    }
+    .exercises-container{
+        padding: 0;
     }
     .exercise-detail-container {
         width: 17em;
