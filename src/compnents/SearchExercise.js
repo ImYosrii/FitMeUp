@@ -69,22 +69,22 @@ export default function SearchExercise(){
         }
     function holdBodyPart(part){
         setCurrentPart(part)
+        setCurrentPage(1)
+        searchedData.current=''
         window.scrollTo({top:940, behavior: 'smooth' })
 
     }
     function showExercises(){
         if(searchedData.current.length){
             const exercise = searchedData.current.map(exercise => <Exercise data={exercise} key={exercise.id} />)
-            searchedData.current = ''
-
             return exercise
         }
-        else if (currentPart === 'All' && !searchedData.current.length){
-            const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
-            return exercise
-        }
-        else if (currentPart !== 'All' && exercisesBody.length && !searchedData.current.length){
+        else if (currentPart !== 'All' && exercisesBody.length){
             const exercise = exercisesBody.map(exercise => <Exercise data={exercise} key={exercise.id} />)
+            return exercise
+        }
+        else if (currentPart === 'All'){
+            const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             return exercise
         }
     }
@@ -96,13 +96,13 @@ export default function SearchExercise(){
     function paginate(event, value){
         setCurrentPage(value)
   }
-        const bodyParts = bodyPartsData.length? bodyPartsData.map(bodyPart =>
-             <BodyParts 
-                part={bodyPart} 
-                key={bodyPart} 
-                id={bodyPart} 
-                func={holdBodyPart}
-                currentPart={currentPart}/>) : ''
+    const bodyParts = bodyPartsData.length ? bodyPartsData.map(bodyPart =>
+            <BodyParts 
+            part={bodyPart} 
+            key={bodyPart} 
+            id={bodyPart} 
+            func={holdBodyPart}
+            currentPart={currentPart}/>) : ''
     return(
         <div>
             <form 
