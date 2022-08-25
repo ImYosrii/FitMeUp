@@ -123,7 +123,7 @@ export default function SearchExercise(){
             </div>
             <h2 className={`resualts-title ${!Alldata.length?'loader':''}`} id="exercises">Exercises</h2>
             <div className='exercises-container'>
-                {!Alldata.length && <Loader show = {loader} spinnerSize='3em'/>}
+                {!Alldata.length && <Loader show = {loader} spinnerSize='3em'/>}    
                 {Alldata.length && currentExercises}
                 <div className='pagination-container'>
                 {Alldata.length && <Pagination
