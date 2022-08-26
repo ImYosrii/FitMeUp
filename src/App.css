@@ -89,6 +89,7 @@ p{
     border-right:none;   
     border-bottom-left-radius:.53em;
     border-top-left-radius: .53em;
+    cursor: pointer;
 }
 .search-btn{
     padding: .8em 1.3em;
@@ -206,10 +207,9 @@ p{
     
 }
 .exercise-detailPage-title{
-    text-align: center;
     text-transform: capitalize;
     font-size: 1.4rem;
-    margin-top:.3em
+    margin-top:.3em;
 
 }
 .exercise-detailPage-container span,
