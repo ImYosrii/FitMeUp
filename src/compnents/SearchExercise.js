@@ -15,6 +15,7 @@ export default function SearchExercise(){
     const [loader, setLoader] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [exercisesPerPage] = useState(8); 
+    const [popUp, setPopUp] = useState(false)
     useEffect(() => {
     async function fetchExercisesData () {
       const data = await fetchData('https://exercisedb.p.rapidapi.com/exercises', apiAuthorize)
@@ -49,28 +50,35 @@ export default function SearchExercise(){
     }
 
     },[currentPart])
-
     function handleSearch(e){
         setSearchExcer(e.target.value)
     }
+    function filterSearch(word){
+        const filterdList= Alldata.filter(
+            exercise => 
+            exercise.name.toLowerCase().includes(searchExcer.toLowerCase()) || 
+            exercise.target.toLowerCase().includes(searchExcer.toLowerCase()) || 
+            exercise.equipment.toLowerCase().includes(searchExcer.toLowerCase()) || 
+            exercise.bodyPart.toLowerCase().includes(searchExcer.toLowerCase())
+            )
+        return filterdList
+    }
     function handleSubmit(event){
         event.preventDefault()
-        if(searchExcer.length){
-            searchedData.current = Alldata.filter(
-                exercise => 
-                exercise.name.toLowerCase().includes(searchExcer) || 
-                exercise.target.toLowerCase().includes(searchExcer) || 
-                exercise.equipment.toLowerCase().includes(searchExcer) || 
-                exercise.bodyPart.toLowerCase().includes(searchExcer)
-            )
-            window.scrollTo({top:940, behavior: 'smooth' });
+        if(filterSearch(searchExcer).length && searchExcer.length){
+            searchedData.current = filterSearch(searchExcer)
+            window.scrollTo({top:960, behavior: 'smooth' });
+            setSearchExcer('')
+        }
+        else{
+            setPopUp(true)
             setSearchExcer('')
         }
         }
     function holdBodyPart(part){
+        searchedData.current=''
         setCurrentPart(part)
         setCurrentPage(1)
-        searchedData.current=''
         window.scrollTo({top:940, behavior: 'smooth' })
 
     }
@@ -87,6 +95,16 @@ export default function SearchExercise(){
             const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             return exercise
         }
+    }
+    function showPopUp(){
+        const popUpJSX =    <div className='popUp-container'>
+                                <h2>No exercises found</h2>
+                                <h4>Please search again</h4>
+                            </div>
+        if(popUp){
+            setTimeout(()=>(setPopUp(false)),4000)
+        }
+        return popUpJSX
     }
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
@@ -106,7 +124,7 @@ export default function SearchExercise(){
     return(
         <div>
             <form 
-                onSubmit={handleSubmit} className="search-form">
+                className="search-form">
                 <input 
                     id="search" 
                     className='search-input'
@@ -114,8 +132,9 @@ export default function SearchExercise(){
                     value={searchExcer}
                     onChange={handleSearch}
                     placeholder="Exercise, Equipment, Muscle target"/>
-                <button className="search-btn">Search</button>
+                <button className="search-btn" onClick={handleSubmit}>Search</button>
             </form>
+            {popUp ? showPopUp() : ''}
             <h2 className={`criterias-title ${!Alldata.length?'loader':''}`}>Muscle Criteria</h2>
                 {!Alldata.length && <Loader show = {loader} spinnerSize='3em'/>}
             <div className='bodyParts-container'>
