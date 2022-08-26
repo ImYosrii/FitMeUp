@@ -67,8 +67,8 @@ export default function SearchExercise(){
         event.preventDefault()
         if(filterSearch(searchExcer).length && searchExcer.length){
             searchedData.current = filterSearch(searchExcer)
-            window.scrollTo({top:960, behavior: 'smooth' });
             setSearchExcer('')
+            window.scrollTo({top:960, behavior: 'smooth' });
         }
         else{
             setPopUp(true)
