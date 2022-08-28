@@ -1,5 +1,5 @@
 # FitMeUp
-Exercising website
+An exercising website that offers 1300+ exercises with offering youtube videos for each exercise
 
 ### Link: https://fit-me-up.netlify.app/
 <br>
