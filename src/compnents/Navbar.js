@@ -24,7 +24,6 @@ export default function Navbar(){
     }
     return (
         <div className="navbar-container">
-            <img src={Logo} className="nav-logo"/>
             <div className="links-container">
                 <Link to="/" 
                     className={`nav-link ${homeClicked ? 'clicked':''}`} 

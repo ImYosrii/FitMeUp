@@ -20,6 +20,8 @@ body{
 }
 .links-container{
     display: flex;
+    margin: 0 auto;
+    padding-top: 1em;
     justify-content: space-around ;
     gap:2em;
 }

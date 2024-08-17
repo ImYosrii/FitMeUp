@@ -18,13 +18,13 @@ export default function SearchExercise(){
     const [popUp, setPopUp] = useState(false)
     useEffect(() => {
     async function fetchExercisesData () {
-      const data = await fetchData('https://exercisedb.p.rapidapi.com/exercises', apiAuthorize)
+      const data = await fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=0&offset=0', apiAuthorize)
 
       setAllData(data)
       
     }
     async function fetchBodyPartData () {
-      const bodyData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', apiAuthorize)
+      const bodyData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList?limit=0&offset=0', apiAuthorize)
 
       setBodyPartsData(['All',...bodyData])
       
@@ -36,14 +36,14 @@ export default function SearchExercise(){
     useEffect(()=>{
        if (currentPart !== 'All' && currentPart.length ){
            async function fetchBodyPartExercise () {
-               const bodyExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${currentPart}`, apiAuthorize)
+               const bodyExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${currentPart}?limit=0&offset=0`, apiAuthorize)
              setExercisesBody(bodyExercise)
        }
        fetchBodyPartExercise()
     }
     else if (currentPart === 'All'){
            async function fetchBodyPartExercise () {
-               const bodyExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/back`, apiAuthorize)
+               const bodyExercise = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/back?limit=0&offset=0`, apiAuthorize)
              setExercisesBody(bodyExercise)
        }
        fetchBodyPartExercise()
@@ -92,6 +92,7 @@ export default function SearchExercise(){
             return exercise
         }
         else if (currentPart === 'All'){
+            console.log(Alldata.length)
             const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             return exercise
         }
