@@ -92,7 +92,6 @@ export default function SearchExercise(){
             return exercise
         }
         else if (currentPart === 'All'){
-            console.log(Alldata.length)
             const exercise = Alldata.map(exercise => <Exercise data={exercise} key={exercise.id} />)
             return exercise
         }
